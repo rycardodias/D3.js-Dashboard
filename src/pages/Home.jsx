@@ -65,7 +65,7 @@ export const Home = () => {
                         <div key={item.i} style={{ border: '1px solid black' }}>
                             {item.x === 0
                                 ? getDescription(item.i)
-                                : <ChartHandler key={item.i} />
+                                : <ChartHandler id={item.i} />
                             }
                         </div>
                     )
