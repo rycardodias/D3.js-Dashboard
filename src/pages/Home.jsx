@@ -62,7 +62,7 @@ export const Home = () => {
             >
                 {currentLayout.map(item => {
                     return (
-                        <div key={item.i} style={{ border: '1px solid black' }}>
+                        <div key={item.i}>
                             {item.x === 0
                                 ? getDescription(item.i)
                                 : <ChartHandler id={item.i} />
