@@ -12,4 +12,8 @@ const historicalByStateDta = async (state, date) => {
     return await sendRequest('/states/' + state + '/' + date + '.json')
 }
 
-export { currentStates, currentByState, historicalByStateDta }
+const dailyByState = async (state) => {
+    return await sendRequest('/states/' + state + '/daily.json')
+}
+
+export { currentStates, currentByState, historicalByStateDta, dailyByState }

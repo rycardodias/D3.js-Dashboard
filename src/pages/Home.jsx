@@ -7,9 +7,10 @@ export const Home = () => {
     const graphSize = 3
 
     const initialLayout = [
-        { i: "1", x: 0, y: 0, w: 2, h: 1, desc: "Casos Covid" },
-        { i: "2", x: 0, y: 0, w: 2, h: 1, desc: "Casos Variola" },
-        { i: "3", x: 0, y: 0, w: 2, h: 1, desc: "Animado" },
+        { i: "1", x: 0, y: 0, w: 2, h: 1, desc: "Covid Totals All States" },
+        { i: "2", x: 0, y: 0, w: 2, h: 1, desc: "Covid Metrics California" },
+        { i: "3", x: 0, y: 0, w: 2, h: 1, desc: "Covid Metrics Different States" },
+        { i: "4", x: 0, y: 0, w: 2, h: 1, desc: "Covid Daily California" },
     ];
 
     const [currentLayout, setcurrentLayout] = useState(initialLayout)
