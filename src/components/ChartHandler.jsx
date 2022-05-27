@@ -16,16 +16,32 @@ export const ChartHandler = ({ id }) => {
       let result
       switch (id) {
         case '1': result = await currentStates(); break;
-        // case '2': result = await currentByState('ca'); break;
+        case '2': {
+          result = await currentByState('ca');
+
+          result = {
+            // death: result.death,
+            positive: result.positiveIncrease,
+            hospitalized: result.hospitalizedCurrently,
+            InVentilation: result.inIcuCurrently,
+            // positive: result.positive,
+            // negative: result.negative
+          }
+
+          break;
+        }
         default: result = []
       }
 
-      await setdata(result.splice(0, 15))
+      if (result.length > 15) {
+        await setdata(result.splice(0, 15))
+      } else {
+        await setdata(result)
+      }
 
       await setloading(false)
     })()
   }, [])
-
 
 
   const chartList = [

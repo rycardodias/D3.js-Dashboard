@@ -7,7 +7,7 @@ export const BarChart = ({ data, xObjectName, yObjectName }) => {
 
   useEffect(() => {
     const svgElement = d3.select(ref.current)
-    
+
     var svgwidth = svgElement._groups[0][0].clientWidth
     var svgheight = svgElement._groups[0][0].clientHeight
 
@@ -39,6 +39,10 @@ export const BarChart = ({ data, xObjectName, yObjectName }) => {
 
     svgElement.append("g").call(d3.axisLeft(y));
 
+
+
+    const color = d3.scaleOrdinal()
+      .range(d3.schemeSet2);
     // Bars
     svgElement.selectAll("mybar")
       .data(data)
@@ -48,7 +52,7 @@ export const BarChart = ({ data, xObjectName, yObjectName }) => {
       .attr("y", function (d) { return y(d[yObjectName]); })
       .attr("width", x.bandwidth())
       .attr("height", function (d) { return height - y(d[yObjectName]); })
-      .attr("fill", "cyan")
+      .attr("fill", function (d) { return color(d[yObjectName]); })
 
   }, [])
 
