@@ -16,9 +16,7 @@ export const BarChart = ({ data, xObjectName, yObjectName }) => {
       height = svgheight - margin.top - margin.bottom;
 
 
-    svgElement
-      // .style('border', '1px solid black')
-      .append("g")
+    svgElement.append("g")
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
     // X axis
@@ -27,27 +25,20 @@ export const BarChart = ({ data, xObjectName, yObjectName }) => {
 
     svgElement.append("g")
       .attr("transform", "translate(0," + height + ")")
-      .call(d3.axisBottom(x))
-      .selectAll("text")
+      .call(d3.axisBottom(x)).selectAll("text")
       .attr("transform", "translate(-10,0)rotate(-45)")
       .style("text-anchor", "end");
 
     const maxYDomain = Math.max(...data.map(item => item[yObjectName]))
 
-    // Y axis
     var y = d3.scaleLinear().domain([0, maxYDomain]).range([height, 0]);
 
     svgElement.append("g").call(d3.axisLeft(y));
 
+    const color = d3.scaleOrdinal().range(d3.schemeSet2);
 
-
-    const color = d3.scaleOrdinal()
-      .range(d3.schemeSet2);
-    // Bars
     svgElement.selectAll("mybar")
-      .data(data)
-      .enter()
-      .append("rect")
+      .data(data).enter().append("rect")
       .attr("x", function (d) { return x(d[xObjectName]); })
       .attr("y", function (d) { return y(d[yObjectName]); })
       .attr("width", x.bandwidth())

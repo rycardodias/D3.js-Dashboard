@@ -6,6 +6,9 @@ export const Home = () => {
     const barSize = 2
     const graphSize = 3
 
+    const [loading, setloading] = useState(false)
+
+
     const initialLayout = [
         { i: "1", x: 0, y: 0, w: 2, h: 1, desc: "Covid Totals All States" },
         { i: "2", x: 0, y: 0, w: 2, h: 1, desc: "Covid Metrics California" },
@@ -49,10 +52,16 @@ export const Home = () => {
         setcurrentLayout(initialLayout)
     }
 
+    const handleRefresh = async () => {
+        await setloading(true)
+        await setloading(false)
+    }
+
     return (
         <>
             <button onClick={handleSave}>Save</button>
             <button onClick={handleReset}>Reset</button>
+            <button onClick={handleRefresh}>Refresh</button>
             <GridLayout
                 className="layout"
                 style={{ border: '1px solid black' }}
@@ -67,7 +76,7 @@ export const Home = () => {
                         <div key={item.i}>
                             {item.x === 0
                                 ? getDescription(item.i)
-                                : <ChartHandler id={item.i} />
+                                : !loading && <ChartHandler id={item.i} />
                             }
                         </div>
                     )

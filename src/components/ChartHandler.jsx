@@ -79,6 +79,8 @@ export const ChartHandler = ({ id }) => {
 
       await setloading(false)
     })()
+
+    console.log('loading:' + id)
   }, [])
 
   const chartList = [
